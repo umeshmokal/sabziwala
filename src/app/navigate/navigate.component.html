@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-2">
+            <nav class="d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul #cat class=" pointer nav flex-column">
+                        <li (click)="updateCategory('all')" class="nav-item">
+                            <a class="nav-link active">
+                                All Categories
+                            </a>
+                        </li>
+                        <li (click)="updateCategory('bread')" class="nav-item">
+                            <a  class="nav-link">
+                                Bread
+                            </a>
+                        </li>
+                        <li (click)="updateCategory('dairy')" class="nav-item">
+                            <a class="nav-link">
+                                Dairy
+                            </a>
+                        </li>
+                        <li (click)="updateCategory('fruits')" class="nav-item">
+                            <a class="nav-link">
+                                Fruits
+                            </a>
+                        </li>
+                        <li (click)="updateCategory('spices')" class="nav-item">
+                            <a class="nav-link">
+                                Seasoning & Spices
+                            </a>
+                        </li>
+                        <li (click)="updateCategory('vegetables')" class="nav-item">
+                            <a class="nav-link">
+                                Vegetables
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="shoppingContainer col-lg-9 col-md-10">
+            <app-shopping-container></app-shopping-container>
+        </div>
+    </div>
+</div>

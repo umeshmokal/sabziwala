@@ -1,0 +1,18 @@
+<div class="row">
+  <div *ngFor="let item of selectedCategory" class="col-lg-4 col-md-6 col-sm-6 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <!-- <h5 class="card-title">{{item.id}}</h5> -->
+        <img class="image" src="/assets/images/{{item.image}}" alt="image">
+        <p class="card-text">{{item.name}}</p>
+        <p class="card-text">₹{{item.price}}</p>
+        <a *ngIf="!item.isHideAddToCart == true" class="btn btn-primary" (click)="incrementCount(item)">Add to Cart</a>
+        <div *ngIf="item.isHideAddToCart" style="display: flex; justify-content: space-between;">
+          <div class="btn btn-primary" (click)="decrementCount(item)">-</div>
+          <p class="card-text">{{item.count}}</p>
+          <div class="btn btn-primary" (click)="incrementCount(item)">+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

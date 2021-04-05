@@ -1,0 +1,21 @@
+<div class="loginContainer">
+  <div class="form-signin">
+    <form #loginForm="ngForm" (ngSubmit)="getData(loginForm.value)">
+      <h1 *ngIf="isLoggedInButtonPressed else signup" class="h3 mb-3 fw-normal">Please sign in</h1>
+      <ng-template #signup>
+        <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+      </ng-template>
+      <label for="inputEmail" class="visually-hidden">Email address</label>
+      <input type="email" id="inputEmail" ngModel name="email" class="form-control" placeholder="Email address" required
+        autofocus>
+      <label for="inputPassword" class="visually-hidden">Password</label>
+      <input type="password" id="inputPassword" name="password" ngModel class="form-control" placeholder="Password"
+        required>
+      <button *ngIf="isLoggedInButtonPressed else signUp" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <ng-template #signUp>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+      </ng-template>
+      <p class="mt-5 mb-3 text-muted">&copy;2021</p>
+    </form>
+  </div>
+</div>

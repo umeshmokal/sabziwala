@@ -1,0 +1,41 @@
+<h2 mat-dialog-title>Items in cart</h2>
+<mat-dialog-content>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Count</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of selectedItems">
+          <td>{{item.name}}</td>
+          <td>
+            <a *ngIf="!item.isHideAddToCart === true" class="btn btn-primary" (click)="incrementCount(item)">Add to
+              Cart</a>
+            <div *ngIf="item.isHideAddToCart" style="display: flex; justify-content: space-between;">
+              <div class="btn btn-primary" (click)="decrementCount(item)">-</div>
+              <p class="card-text">{{item.count}}</p>
+              <div class="btn btn-primary" (click)="incrementCount(item)">+</div>
+            </div>
+          </td>
+          <td>{{item.count}}*{{item.price}}</td>
+          <td>{{item.count * item.price}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td class="bold">Total</td>
+          <td class="bold">{{total}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-between">
+  <button class="btn btn-primary" (click)="close()">Go back</button>
+  <button class="btn btn-primary">Place order</button>
+</mat-dialog-actions>

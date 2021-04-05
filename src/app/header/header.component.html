@@ -1,0 +1,27 @@
+<div>
+  <header
+    class="header d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-light">
+    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+      <h3>Sabziwala</h3>
+    </a>
+    <!-- for future use -->
+    <!-- <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
+      <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
+      <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
+      <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
+      <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+    </ul> -->
+
+    <div class="col-md-3 text-end">
+      <mat-form-field class="pointer" *ngIf="isLogin else yetToLogin" appearance="fill">
+        <a class="text-dark text-decoration-none me-2" (click)="openShoppingDetailsModal()">🛍️<sup *ngIf="count>0">{{count}}</sup></a>
+        <mat-label>{{userName}}</mat-label>
+      </mat-form-field>
+      <ng-template #yetToLogin>
+        <button type="button" class="btn btn-outline-primary me-2" (click)="goToLogin(true)">Login</button>
+        <button type="button" class="btn btn-primary" (click)="goToLogin(false)">Sign-up</button>
+      </ng-template>
+    </div>
+  </header>
+</div>
