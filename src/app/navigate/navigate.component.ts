@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataTransferService } from '../data-transfer.service';
-import {ShoppingContainerComponent} from '../shopping-container/shopping-container.component'
+import { ShoppingContainerComponent } from '../shopping-container/shopping-container.component'
 
 @Component({
   selector: 'app-navigate',
@@ -9,18 +9,18 @@ import {ShoppingContainerComponent} from '../shopping-container/shopping-contain
 })
 export class NavigateComponent implements OnInit {
 
-  // @ViewChild('cat') a:ElementRef;
-  constructor(private dataTransferService:DataTransferService) { }
+  constructor(private dataTransferService: DataTransferService) { }
 
   ngOnInit(): void {
-    // this.dataTransferService.getCategoryName().subscribe(category => {
-
-    // })
   }
 
-  // ngAfterViewInit() {
-  //   console.log(this.a.nativeElement);
-  // }
+  setCurrentCategoryAsActive(e) {
+    let elems = document.querySelector(".active");
+    if (elems !== null) {
+      elems.classList.remove("active");
+    }
+    e.target.className = "nav-link active";
+  }
 
   updateCategory(categoryName) {
     this.dataTransferService.changeCategory(categoryName);

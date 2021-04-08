@@ -1,27 +1,33 @@
-<div>
-  <header
-    class="header d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom bg-light">
-    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-      <h3>Sabziwala</h3>
-    </a>
-    <!-- for future use -->
-    <!-- <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="#" class="nav-link px-2 link-secondary">Home</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">Features</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-      <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
-    </ul> -->
-
-    <div class="col-md-3 text-end">
-      <mat-form-field class="pointer" *ngIf="isLogin else yetToLogin" appearance="fill">
-        <a class="text-dark text-decoration-none me-2" (click)="openShoppingDetailsModal()">🛍️<sup *ngIf="count>0">{{count}}</sup></a>
-        <mat-label>{{userName}}</mat-label>
-      </mat-form-field>
-      <ng-template #yetToLogin>
-        <button type="button" class="btn btn-outline-primary me-2" (click)="goToLogin(true)">Login</button>
-        <button type="button" class="btn btn-primary" (click)="goToLogin(false)">Sign-up</button>
-      </ng-template>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light header">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Sabziwala</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 justify-content-end">
+        <ng-template #yetToLogin>
+          <li class="btn btn-outline-primary me-2" (click)="goToLogin(true)">
+            Login
+          </li>
+          <li class="btn btn-primary" (click)="goToLogin(false)">
+            Signup
+          </li>
+        </ng-template>
+        <li *ngIf="isLogin else yetToLogin" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{userName}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </li>
+        <li *ngIf="isLogin" class="nav-item pointer">
+          <a class="nav-link" (click)="openShoppingDetailsModal()">🛍️<sup *ngIf="count>0">{{count}}</sup></a>
+        </li>
+      </ul>
     </div>
-  </header>
-</div>
+  </div>
+</nav>

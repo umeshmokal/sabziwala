@@ -2,9 +2,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3 col-md-2">
-            <nav class="d-none d-md-block bg-light sidebar">
+            <nav class="d-none d-md-block bg-transperent sidebar">
                 <div class="sidebar-sticky">
-                    <ul #cat class=" pointer nav flex-column">
+                    <ul (click)="setCurrentCategoryAsActive($event)" class=" pointer nav flex-column">
                         <li (click)="updateCategory('all')" class="nav-item">
                             <a class="nav-link active">
                                 All Categories
