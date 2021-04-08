@@ -10,310 +10,8 @@ import { ShoppingDetailsComponent } from '../shopping-container/shopping-details
 export class ShoppingContainerComponent implements OnInit {
 
   count = 0;
-  selectedCategory = [];
+  listOfItems = [];
   selectedItems = [];
-  // shoppingItems = {
-  //   'all': [
-  //     {
-  //       id: 1,
-  //       name: 'Apples',
-  //       count: 0,
-  //       price: 200,
-  //       image : 'apples.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 2,
-  //       name: 'White Bread',
-  //       count: 0,
-  //       price: 20,
-  //       image : 'whitebread.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 3,
-  //       name: 'Cinnamon',
-  //       count: 0,
-  //       price: 20,
-  //       image : 'cinnamon.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 4,
-  //       name: 'Ladyfinger',
-  //       count: 0,
-  //       price: 50,
-  //       image : 'ladyfinger.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 5,
-  //       name: 'Tomato',
-  //       count: 0,
-  //       price: 40,
-  //       image : 'tomato.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 6,
-  //       name: 'Potato',
-  //       count: 0,
-  //       price: 30,
-  //       image : 'potato.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 7,
-  //       name: 'Watermelon',
-  //       count: 0,
-  //       price: 50,
-  //       image : 'watermelon.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 8,
-  //       name: 'Lemon',
-  //       count: 0,
-  //       price: 20,
-  //       image : 'lemon.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 9,
-  //       name: 'Turmeric',
-  //       count: 0,
-  //       price: 30,
-  //       image : 'turmeric.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 10,
-  //       name: 'Milk',
-  //       count: 0,
-  //       price: 20,
-  //       image : 'milk.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 11,
-  //       name: 'Mango',
-  //       count: 0,
-  //       price: 200,
-  //       image : 'mango.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 12,
-  //       name: 'Brown Bread',
-  //       count: 0,
-  //       price: 40,
-  //       image : 'brownbread.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 13,
-  //       name: 'Coriander',
-  //       count: 0,
-  //       price: 40,
-  //       image : 'coriander.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 14,
-  //       name: 'Ginger',
-  //       count: 0,
-  //       price: 50,
-  //       image : 'ginger.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 15,
-  //       name: 'Garlic',
-  //       count: 0,
-  //       price: 100,
-  //       image : 'garlic.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 16,
-  //       name: 'Butter',
-  //       count: 0,
-  //       price: 50,
-  //       image : 'butter.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 17,
-  //       name: 'Curd',
-  //       count: 0,
-  //       price: 40,
-  //       image : 'curd.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 18,
-  //       name: 'Corn',
-  //       count: 0,
-  //       price: 60,
-  //       image : 'corn.jpeg',
-  //       isHideAddToCart: false
-  //     }
-  //   ],
-  //   'bread': [
-  //     {
-  //       id: 2,
-  //       name: 'White Bread',
-  //       count: 0,
-  //       price: 20,
-  //       image : 'whitebread.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 12,
-  //       name: 'Brown Bread',
-  //       count: 0,
-  //       price: 40,
-  //       image : 'brownbread.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //   ],
-  //   'dairy': [
-  //     {
-  //       id: 10,
-  //       name: 'Milk',
-  //       count: 0,
-  //       price: 20,
-  //       image : 'milk.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 16,
-  //       name: 'Butter',
-  //       count: 0,
-  //       price: 50,
-  //       image : 'butter.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 17,
-  //       name: 'Curd',
-  //       count: 0,
-  //       price: 40,
-  //       image : 'curd.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //   ],
-  //   'fruits': [
-  //     {
-  //       id: 1,
-  //       name: 'Apples',
-  //       count: 0,
-  //       price: 200,
-  //       image : 'apples.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 7,
-  //       name: 'Watermelon',
-  //       count: 0,
-  //       price: 50,
-  //       image : 'watermelon.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 11,
-  //       name: 'Mango',
-  //       count: 0,
-  //       price: 200,
-  //       image : 'mango.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //   ],
-  //   'spices': [
-  //     {
-  //       id: 3,
-  //       name: 'Cinnamon',
-  //       count: 0,
-  //       price: 20,
-  //       image : 'cinnamon.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 9,
-  //       name: 'Turmeric',
-  //       count: 0,
-  //       price: 30,
-  //       image : 'turmeric.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //   ],
-  //   'vegetables': [
-  //     {
-  //       id: 4,
-  //       name: 'Ladyfinger',
-  //       count: 0,
-  //       price: 50,
-  //       image : 'ladyfinger.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 5,
-  //       name: 'Tomato',
-  //       count: 0,
-  //       price: 40,
-  //       image : 'tomato.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 6,
-  //       name: 'Potato',
-  //       count: 0,
-  //       price: 30,
-  //       image : 'potato.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 8,
-  //       name: 'Lemon',
-  //       count: 0,
-  //       price: 20,
-  //       image : 'lemon.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 13,
-  //       name: 'Coriander',
-  //       count: 0,
-  //       price: 40,
-  //       image : 'coriander.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 14,
-  //       name: 'Ginger',
-  //       count: 0,
-  //       price: 50,
-  //       image : 'ginger.jpg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 15,
-  //       name: 'Garlic',
-  //       count: 0,
-  //       price: 100,
-  //       image : 'garlic.jpeg',
-  //       isHideAddToCart: false
-  //     },
-  //     {
-  //       id: 18,
-  //       name: 'Corn',
-  //       count: 0,
-  //       price: 60,
-  //       image : 'corn.jpeg',
-  //       isHideAddToCart: false
-  //     }
-  //   ],
-  // }
   shoppingItems = [
     {
       id: 1,
@@ -321,6 +19,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 200,
       image: 'apples.jpeg',
+      category: 'fruits',
       isHideAddToCart: false
     },
     {
@@ -328,6 +27,7 @@ export class ShoppingContainerComponent implements OnInit {
       name: 'White Bread',
       count: 0,
       price: 20,
+      category: 'bread',
       image: 'whitebread.jpeg',
       isHideAddToCart: false
     },
@@ -336,6 +36,7 @@ export class ShoppingContainerComponent implements OnInit {
       name: 'Cinnamon',
       count: 0,
       price: 20,
+      category: 'spices',
       image: 'cinnamon.jpg',
       isHideAddToCart: false
     },
@@ -345,6 +46,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 50,
       image: 'ladyfinger.jpg',
+      category: 'vegetables',
       isHideAddToCart: false
     },
     {
@@ -353,6 +55,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 40,
       image: 'tomato.jpeg',
+      category: 'vegetables',
       isHideAddToCart: false
     },
     {
@@ -361,6 +64,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 30,
       image: 'potato.jpeg',
+      category: 'vegetables',
       isHideAddToCart: false
     },
     {
@@ -369,6 +73,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 50,
       image: 'watermelon.jpg',
+      category: 'fruits',
       isHideAddToCart: false
     },
     {
@@ -377,6 +82,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 20,
       image: 'lemon.jpg',
+      category: 'vegetables',
       isHideAddToCart: false
     },
     {
@@ -385,6 +91,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 30,
       image: 'turmeric.jpeg',
+      category: 'spices',
       isHideAddToCart: false
     },
     {
@@ -393,6 +100,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 20,
       image: 'milk.jpg',
+      category: 'dairy',
       isHideAddToCart: false
     },
     {
@@ -401,6 +109,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 200,
       image: 'mango.jpg',
+      category: 'fruits',
       isHideAddToCart: false
     },
     {
@@ -409,6 +118,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 40,
       image: 'brownbread.jpg',
+      category: 'bread',
       isHideAddToCart: false
     },
     {
@@ -417,6 +127,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 40,
       image: 'coriander.jpg',
+      category: 'vegetables',
       isHideAddToCart: false
     },
     {
@@ -425,6 +136,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 50,
       image: 'ginger.jpg',
+      category: 'vegetables',
       isHideAddToCart: false
     },
     {
@@ -433,6 +145,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 100,
       image: 'garlic.jpeg',
+      category: 'vegetables',
       isHideAddToCart: false
     },
     {
@@ -441,6 +154,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 50,
       image: 'butter.jpg',
+      category: 'dairy',
       isHideAddToCart: false
     },
     {
@@ -449,6 +163,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 40,
       image: 'curd.jpg',
+      category: 'dairy',
       isHideAddToCart: false
     },
     {
@@ -457,6 +172,7 @@ export class ShoppingContainerComponent implements OnInit {
       count: 0,
       price: 60,
       image: 'corn.jpeg',
+      category: 'vegetables',
       isHideAddToCart: false
     }
   ]
@@ -475,7 +191,11 @@ export class ShoppingContainerComponent implements OnInit {
     this.dataTransferService.getCategoryName().subscribe(category => {
       console.log(category);
       this.category = category;
-      this.selectedCategory = this.shoppingItems[category];
+      if(this.category === 'all') {
+        this.listOfItems = this.shoppingItems;
+      } else {
+        this.listOfItems = this.shoppingItems.filter(item =>  item.category === this.category);
+      }
     });
 
     this.dataTransferService.getShoppingDetailsModal().subscribe(isShowModal => {
@@ -483,25 +203,26 @@ export class ShoppingContainerComponent implements OnInit {
       this.isShowModal = isShowModal;
       if (this.isShowModal) this.showShoppingDetailsModal();
     });
-
-    this.dataTransferService.getListOfItemsInCart().subscribe(selectedItems => {
-      this.selectedItems = selectedItems;
-    });
   }
 
   incrementCount(item) {
     item.count++;
     if (item.count > 0) item.isHideAddToCart = true;
+    let check = this.selectedItems.findIndex(ele => ele.id === item.id);
+    if(check === -1) {
+      this.selectedItems.push(item);
+    }
     this.dataTransferService.incrementCountOfItems(this.count);
-    const tempMyObj = Object.assign({}, item);
-    this.dataTransferService.addToCart(tempMyObj);
   }
 
   decrementCount(item) {
     item.count--;
     if (item.count === 0) item.isHideAddToCart = false;
+    let check = this.selectedItems.findIndex(ele => ele.id === item.id);
+    if(this.selectedItems[check].count === 0) {
+      this.selectedItems.splice(check,1);
+    }
     this.dataTransferService.decrementCountOfItems(this.count);
-    this.dataTransferService.removeFromCart(item);
   }
 
   showShoppingDetailsModal() {
@@ -512,7 +233,6 @@ export class ShoppingContainerComponent implements OnInit {
     dialogConfig.panelClass = 'custom-dialog-container';
     let dialogRef = this.dialog.open(ShoppingDetailsComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
       this.dataTransferService.toggleShoppingDetailsModal(false);
     });
   }
