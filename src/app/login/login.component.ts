@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DataTransferService } from '../data-transfer.service';
 
 @Component({
@@ -7,16 +8,17 @@ import { DataTransferService } from '../data-transfer.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   isLoggedInButtonPressed = false;
   users = [];
+  getLoginStatus$ : Subscription;
   constructor(
     private router: Router,
     private dataTransferService: DataTransferService
   ) { }
 
   ngOnInit(): void {
-    this.dataTransferService.getUserLogInStatus().subscribe(isLoggedInButtonPressed => {
+    this.getLoginStatus$ = this.dataTransferService.getUserLogInStatus().subscribe(isLoggedInButtonPressed => {
       this.isLoggedInButtonPressed = isLoggedInButtonPressed;
     })
   }
@@ -71,6 +73,9 @@ export class LoginComponent implements OnInit {
       alert("Signup successfully completed");
       this.router.navigate(['/header']);
     }
-    
+  }
+
+  ngOnDestroy() {
+    this.getLoginStatus$.unsubscribe();
   }
 }

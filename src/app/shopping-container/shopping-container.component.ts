@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { DataTransferService } from '../data-transfer.service';
 import { ShoppingDetailsComponent } from '../shopping-container/shopping-details/shopping-details.component'
 @Component({
@@ -7,7 +8,7 @@ import { ShoppingDetailsComponent } from '../shopping-container/shopping-details
   templateUrl: './shopping-container.component.html',
   styleUrls: ['./shopping-container.component.css']
 })
-export class ShoppingContainerComponent implements OnInit {
+export class ShoppingContainerComponent implements OnInit, OnDestroy {
 
   count = 0;
   listOfItems = [];
@@ -178,17 +179,20 @@ export class ShoppingContainerComponent implements OnInit {
   ]
   isShowModal = false;
   category = '';
+  getCountOfItems$ :Subscription;
+  getCategoryName$ : Subscription;
+  getShoppingDetailsModal$ : Subscription;
   constructor(
     private dataTransferService: DataTransferService,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    this.dataTransferService.getCountOfItems().subscribe(count => {
+    this.getCountOfItems$ = this.dataTransferService.getCountOfItems().subscribe(count => {
       this.count = count;
     });
 
-    this.dataTransferService.getCategoryName().subscribe(category => {
+    this.getCategoryName$ = this.dataTransferService.getCategoryName().subscribe(category => {
       console.log(category);
       this.category = category;
       if(this.category === 'all') {
@@ -198,7 +202,7 @@ export class ShoppingContainerComponent implements OnInit {
       }
     });
 
-    this.dataTransferService.getShoppingDetailsModal().subscribe(isShowModal => {
+    this.getShoppingDetailsModal$ = this.dataTransferService.getShoppingDetailsModal().subscribe(isShowModal => {
       console.log(isShowModal);
       this.isShowModal = isShowModal;
       if (this.isShowModal) this.showShoppingDetailsModal();
@@ -238,6 +242,9 @@ export class ShoppingContainerComponent implements OnInit {
   }
 
   ngOnDestroy() {
-  }
+    this.getCountOfItems$.unsubscribe();
+    this.getCategoryName$.unsubscribe();
+    this.getShoppingDetailsModal$.unsubscribe();
+   }
 
 }

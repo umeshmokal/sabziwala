@@ -1,29 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DataTransferService } from '../data-transfer.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit,OnDestroy {
 
   isLogin = false;
   userName; 
-  count = 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+  count = 0;
+  getUserName$ :Subscription; 
+  getCountOfItems$ : Subscription;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
   constructor(
     private router:Router,
     private dataTransferService : DataTransferService
     ) 
   { 
-    this.dataTransferService.getUserName().subscribe(username => {
+    this.getUserName$ = this.dataTransferService.getUserName().subscribe(username => {
       if(username) {
         console.log(username);
         this.userName = username;
         this.isLogin = true;
       }
     });
-    this.dataTransferService.getCountOfItems().subscribe(count => {
+    this.getCountOfItems$ = this.dataTransferService.getCountOfItems().subscribe(count => {
       console.log("header " + count);
       this.count = count;
   });
@@ -32,11 +35,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     
   }
-
-  ngAfterViewInit() {
-    
-  }
-
   goToLogin(isLogin) {
     this.dataTransferService.setLogInStatus(isLogin);
     this.router.navigate(['/login']);
@@ -49,6 +47,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    this.getUserName$.unsubscribe();
+    this.getCountOfItems$.unsubscribe();
   }
 
 }

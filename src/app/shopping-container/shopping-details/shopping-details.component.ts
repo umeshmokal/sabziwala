@@ -1,15 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { Subscription } from 'rxjs';
 import { DataTransferService } from 'src/app/data-transfer.service';
 @Component({
   selector: 'app-shopping-details',
   templateUrl: './shopping-details.component.html',
   styleUrls: ['./shopping-details.component.css']
 })
-export class ShoppingDetailsComponent implements OnInit {
+export class ShoppingDetailsComponent implements OnInit, OnDestroy {
   selectedItems = [];
   total = 0;
   count = 0;
+  getCountOfItems$ : Subscription;
   constructor(
         private dialogRef: MatDialogRef<ShoppingDetailsComponent>,
         @Inject(MAT_DIALOG_DATA) data,
@@ -23,7 +25,7 @@ export class ShoppingDetailsComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.selectedItems);
 
-    this.dataTransferService.getCountOfItems().subscribe(count => {
+    this.getCountOfItems$ = this.dataTransferService.getCountOfItems().subscribe(count => {
       this.count = count;
     });
   }
@@ -66,6 +68,10 @@ export class ShoppingDetailsComponent implements OnInit {
     this.close();
     alert("Your order is placed");
     this.close();
+  }
+
+  ngOnDestroy() {
+    this.getCountOfItems$.unsubscribe();
   }
 
 }
