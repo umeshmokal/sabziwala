@@ -231,8 +231,10 @@ export class ShoppingContainerComponent implements OnInit, OnDestroy {
 
   showShoppingDetailsModal() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '60%';
-    dialogConfig.height = '100%';
+    dialogConfig.width = '100%';
+    // dialogConfig.height = '100%';
+    if(window.innerWidth < 578)
+    dialogConfig.maxWidth = "100vw";
     dialogConfig.data = this.selectedItems;
     dialogConfig.panelClass = 'custom-dialog-container';
     let dialogRef = this.dialog.open(ShoppingDetailsComponent, dialogConfig);
