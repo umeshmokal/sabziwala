@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light header">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Sabziwala</a>
+    <a class="navbar-brand">Sabziwala</a>
+    <a *ngIf="isLogin" class="nav-link pointer" (click)="openShoppingDetailsModal()">🛍️<sup *ngIf="count>0">{{count}}</sup></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -24,10 +25,8 @@
             <li><a class="dropdown-item" href="#">Logout</a></li>
           </ul>
         </li>
-        <li *ngIf="isLogin" class="nav-item pointer">
-          <a class="nav-link" (click)="openShoppingDetailsModal()">🛍️<sup *ngIf="count>0">{{count}}</sup></a>
-        </li>
       </ul>
     </div>
   </div>
+
 </nav>
