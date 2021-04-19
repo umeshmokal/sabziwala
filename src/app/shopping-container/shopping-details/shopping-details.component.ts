@@ -59,14 +59,17 @@ export class ShoppingDetailsComponent implements OnInit, OnDestroy {
   }
 
   placeOrder() {
+    this.clearCart();
+    alert("Your order is placed");
+  }
+
+  clearCart() {
     this.selectedItems.forEach(item => {
       item.count = 0;
       item.isHideAddToCart = false;
     });
     this.selectedItems.splice(0,this.selectedItems.length);
     this.dataTransferService.decrementCountOfItems(1);
-    this.close();
-    alert("Your order is placed");
     this.close();
   }
 
